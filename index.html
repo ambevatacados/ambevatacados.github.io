@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Conferência de Pedidos — Ambev Atacados</title>
+<meta name="robots" content="noindex">
+<style>
+:root{--azul:#1266d8;--azul-esc:#0b4fa8;--azul-claro:#e8f1fd;--fundo:#f5f8fd;--texto:#16293f;--borda:#dde7f3;--cinza:#7d8da0;--verde:#128C7E;--verm:#d64545}
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',system-ui,-apple-system,sans-serif}
+body{background:var(--fundo);color:var(--texto)}
+.top{background:var(--azul-esc);color:#fff;padding:14px 18px;display:flex;align-items:center;gap:12px}
+.top h1{font-size:1.1rem;font-weight:800}
+.top small{opacity:.85;font-size:.78rem;display:block;font-weight:500}
+.wrap{max-width:1100px;margin:0 auto;padding:16px;display:grid;grid-template-columns:380px 1fr;gap:16px}
+@media(max-width:860px){.wrap{grid-template-columns:1fr}}
+.painel{background:#fff;border:1.5px solid var(--borda);border-radius:16px;padding:14px;box-shadow:0 2px 12px rgba(18,102,216,.08);align-self:start;position:sticky;top:12px}
+@media(max-width:860px){.painel{position:static}.folha-wrap{zoom:.46}}
+.painel label{font-weight:800;font-size:.82rem;color:var(--azul-esc);text-transform:uppercase;letter-spacing:.5px;display:block;margin-bottom:6px}
+textarea{width:100%;min-height:260px;border:1.5px solid var(--borda);border-radius:12px;padding:12px;font-size:.85rem;line-height:1.4;resize:vertical;outline:none;font-family:ui-monospace,Menlo,Consolas,monospace}
+textarea:focus{border-color:var(--azul)}
+.btns{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap}
+button{border:none;border-radius:12px;padding:12px 16px;font-weight:800;font-size:.9rem;cursor:pointer;transition:.15s}
+.b1{background:var(--azul);color:#fff;flex:1}
+.b1:hover{background:var(--azul-esc)}
+.b2{background:var(--azul-claro);color:var(--azul-esc)}
+.b3{background:#fff;color:var(--cinza);border:1.5px solid var(--borda)}
+.dica{font-size:.76rem;color:var(--cinza);margin-top:10px;line-height:1.5}
+.erro{background:#fff3f3;border:1.5px solid var(--verm);color:var(--verm);border-radius:10px;padding:10px;font-size:.82rem;font-weight:700;margin-top:10px;display:none}
+.avisos{margin-top:10px;display:none}
+.avisos div{background:#fff8e1;border:1.5px solid #ffe082;color:#7a5a00;border-radius:10px;padding:8px 10px;font-size:.78rem;font-weight:700;margin-top:6px}
+.campo{margin-top:10px}
+.campo input{width:100%;border:1.5px solid var(--borda);border-radius:10px;padding:9px 11px;font-size:.88rem;outline:none}
+.campo input:focus{border-color:var(--azul)}
+
+/* ===== FOLHA (NOTA) ===== */
+.folha-wrap{overflow:auto}
+.folha{background:#fff;width:210mm;min-height:297mm;margin:0 auto;padding:14mm 14mm 16mm;box-shadow:0 4px 24px rgba(11,79,168,.15);color:#111;font-size:11pt;position:relative}
+.folha.vazia{display:flex;align-items:center;justify-content:center;color:var(--cinza);font-size:1rem;text-align:center;padding:40px}
+.cab{display:flex;justify-content:space-between;align-items:flex-start;border-bottom:3px solid var(--azul-esc);padding-bottom:10px}
+.cab .emp b{font-size:18pt;color:var(--azul-esc);letter-spacing:.3px;display:block}
+.cab .emp span{display:block;font-size:9pt;color:#555;line-height:1.35}
+.cab .num{text-align:right}
+.cab .num .t{font-size:8.5pt;color:#555;text-transform:uppercase;letter-spacing:.8px;font-weight:700}
+.cab .num .n{font-size:16pt;font-weight:900;color:var(--azul-esc)}
+.cab .num .d{font-size:9.5pt;color:#333;margin-top:2px}
+.selo{display:inline-block;margin-top:6px;border:2px solid var(--azul-esc);color:var(--azul-esc);border-radius:6px;padding:2px 8px;font-size:8pt;font-weight:900;letter-spacing:1px;text-transform:uppercase}
+.ent-faixa{margin-top:10px;background:var(--azul-esc);color:#fff;border-radius:8px;padding:7px 12px;display:flex;align-items:center;gap:12px}
+.ent-faixa span{font-size:8.5pt;letter-spacing:1px;font-weight:800;opacity:.85}
+.ent-faixa b{font-size:12pt;font-weight:900}
+.nf-box{margin-top:10px;border:1.5px solid var(--azul);border-radius:8px;padding:8px 10px;background:#f4f8ff}
+.nf-box h3{font-size:8.5pt;text-transform:uppercase;letter-spacing:.8px;color:var(--azul-esc);margin-bottom:6px}
+.nf-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px 14px}
+.nf-grid small{display:block;font-size:7.5pt;color:#666;text-transform:uppercase;letter-spacing:.5px}
+.nf-grid b{font-size:10pt}
+.nf-box.falta{border-color:var(--verm);background:#fff3f3}
+.nf-box.falta p{font-size:9.5pt;color:var(--verm);font-weight:700}
+.blocos{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}
+.bloco{border:1px solid #cfd8e6;border-radius:8px;padding:8px 10px}
+.bloco h3{font-size:8.5pt;text-transform:uppercase;letter-spacing:.8px;color:var(--azul-esc);margin-bottom:5px;border-bottom:1px solid #e3eaf4;padding-bottom:3px}
+.bloco p{font-size:9.5pt;line-height:1.45}
+.bloco p b{color:#222}
+table{width:100%;border-collapse:collapse;margin-top:14px;font-size:9.8pt}
+th{background:var(--azul-esc);color:#fff;text-align:left;padding:7px 8px;font-size:8.5pt;text-transform:uppercase;letter-spacing:.6px}
+td{padding:7px 8px;border-bottom:1px solid #e3eaf4;vertical-align:top}
+tr:nth-child(even) td{background:#f7f9fd}
+.r{text-align:right;white-space:nowrap}
+.c{text-align:center;white-space:nowrap}
+td.item b{display:block}
+td.item small{color:#666;font-size:8.5pt}
+.chk{width:14px;height:14px;border:1.5px solid #888;border-radius:3px;display:inline-block;vertical-align:middle}
+.tot{margin-top:10px;margin-left:auto;width:82mm;border:1px solid #cfd8e6;border-radius:8px;overflow:hidden}
+.tot div{display:flex;justify-content:space-between;gap:10px;padding:5px 10px;font-size:10pt;border-bottom:1px solid #e3eaf4;white-space:nowrap}
+.tot div:last-child{border-bottom:none;background:var(--azul-esc);color:#fff;font-weight:900;font-size:12pt;padding:8px 10px}
+.tot .desc{color:var(--verde);font-weight:800}
+.comod{margin-top:12px;border:1.5px dashed var(--azul);border-radius:8px;padding:8px 10px;background:#f4f8ff}
+.comod h3{font-size:9pt;color:var(--azul-esc);text-transform:uppercase;letter-spacing:.8px;margin-bottom:4px}
+.comod p{font-size:9.5pt;line-height:1.5}
+.obs{margin-top:10px;font-size:9.5pt;border-left:3px solid #ffb300;background:#fff8e1;padding:6px 10px;border-radius:0 6px 6px 0}
+.assin{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-top:26px}
+.assin div{border-top:1px solid #333;padding-top:4px;font-size:8.5pt;text-align:center;color:#444}
+.rod{position:absolute;left:14mm;right:14mm;bottom:8mm;font-size:8pt;color:#777;display:flex;justify-content:space-between;border-top:1px solid #e3eaf4;padding-top:5px}
+.orig{font-size:8pt;color:#999;margin-top:8px;font-style:italic}
+
+@media print{
+  @page{size:A4;margin:0}
+  body{background:#fff}
+  .top,.painel,.no-print{display:none !important}
+  .wrap{display:block;padding:0;max-width:none}
+  .folha{box-shadow:none;margin:0;width:210mm;min-height:297mm;page-break-after:always}
+  .folha-wrap{overflow:visible}
+}
+</style>
+</head>
+<body>
+<div class="top"><div><h1>🧾 Conferência de Pedidos</h1><small>Ambev Atacados — cole o pedido do WhatsApp e gere em PDF</small></div></div>
+
+<div class="wrap">
+  <div class="painel">
+    <label for="txt">Cole o pedido aqui</label>
+
+    <div class="campo" style="margin-top:14px;display:flex;gap:8px">
+      <button class="b1" id="btn-espelho" onclick="alterarModo('espelho')" style="flex:1;background:var(--azul-esc)">📋 Espelho do Pedido</button>
+      <button class="b2" id="btn-nf" onclick="alterarModo('nf')" style="flex:1">🧾 Nota Fiscal</button>
+    </div>
+    <textarea id="txt" placeholder="Cole aqui a mensagem do pedido exatamente como chegou no WhatsApp…"></textarea>
+    <div class="campo"><input id="vend" type="text" placeholder="Conferido por (opcional) — ex.: Rodrigo"></div>
+
+    <label style="margin-top:16px">Nota Fiscal (opcional)</label>
+    <div class="campo"><input id="nf-tipo" type="text" placeholder="Tipo: CNPJ ou CPF"></div>
+    <div class="campo"><input id="nf-doc" type="text" placeholder="Documento (CNPJ/CPF)"></div>
+    <div class="campo"><input id="nf-nome" type="text" placeholder="Razão Social / Nome"></div>
+    <div class="campo"><input id="nf-ie" type="text" placeholder="Inscrição Estadual (CNPJ)"></div>
+    <div class="campo"><input id="nf-email" type="email" placeholder="E-mail NF-e"></div>
+
+    <label style="margin-top:16px">CDD (Código do Cliente)</label>
+    <div class="campo"><input id="cdd" type="text" placeholder="Código de Distribuidor Destino"></div>
+
+    <div class="btns">
+      <button class="b1" onclick="gerar()">📄 Gerar folha</button>
+      <button class="b2" onclick="baixarPDF()" id="btn-pdf" disabled>⬇️ Baixar PDF</button>
+      <button class="b2" onclick="window.print()" id="btn-print" disabled>🖨️ Imprimir</button>
+      <button class="b3" onclick="limpar()">Limpar</button>
+    </div>
+    <div class="erro" id="erro"></div>
+    <div class="avisos" id="avisos"></div>
+    <div class="dica">Dica: no WhatsApp, segure a mensagem → <b>Copiar</b>, depois cole aqui. A folha confere item a item e recalcula os totais — se algo não bater com a mensagem, aparece um aviso amarelo. Os últimos pedidos ficam guardados neste navegador (botão "Últimos" abaixo).</div>
+    <div class="btns"><button class="b3" style="flex:1" onclick="verUltimos()">🕘 Últimos pedidos</button></div>
+    <div id="ultimos"></div>
+  </div>
+
+  <div class="folha-wrap"><div class="folha vazia" id="folha">Cole um pedido ao lado e clique em <b>&nbsp;Gerar folha</b></div></div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+<script>
+const EMPRESA={nome:'Ambev Atacados',sub:'Distribuidora oficial · Atacado e varejo',cnpj:'Ambev S.A. — CNPJ 07.526.557/0001-00',zap:'45 9846-4568'};
+const fmt=v=>'R$ '+(Math.round(v*100)/100).toLocaleString('pt-BR',{minimumFractionDigits:2,maximumFractionDigits:2});
+const num=s=>{ if(!s) return 0; const m=String(s).replace(/[^\d,.-]/g,''); return parseFloat(m.replace(/\./g,'').replace(',','.'))||0; };
+const limpa=s=>s.replace(/\*/g,'').replace(/_/g,'').trim();
+let pedidoAtual=null;
+let modoAtual='espelho'; // 'espelho' ou 'nf'
+
+// Mapeamento de cidades para CDD (Código de Distribuidor Destino)
+const CIDADE_CDD={
+  'itaquaquecetuba':'ITAQ',
+  'são paulo':'SP01',
+  'guarulhos':'GUA01',
+  'santo andré':'SA01',
+  'são bernardo do campo':'SBC01',
+  'diadema':'DIA01',
+  'mauá':'MAU01',
+  'ribeirão pires':'RP01',
+  'campinas':'CAM01',
+  'sorocaba':'SOR01',
+  'santos':'SAN01',
+  'são josé dos campos':'SJC01',
+  'bauru':'BAU01',
+  'piracicaba':'PIR01',
+  'ribeirão preto':'RBP01'
+};
+
+function parse(t){
+  t=t.replace(/\r/g,'');
+  const L=t.split('\n').map(l=>l.trim());
+  const p={num:'',data:'',id:'',titular:'',zap:'',end:{},ref:'',recebedor:'',entrega:'',nf:null,cidade:'',cdd:'',itens:[],sub:null,desc:null,descPct:'',frete:null,total:null,pag:'',troco:'',obs:'',comodato:null,volt:'',origem:'',avisos:[]};
+  const g=(re)=>{for(const l of L){const m=limpa(l).match(re);if(m)return m;}return null;};
+  let m;
+  if(m=g(/PEDIDO\s*#?\s*([\w-]+)/i)) p.num=m[1];
+  if(m=g(/^📅\s*(.+)$/)) p.data=m[1];
+  if(m=g(/ID de cadastro:\s*(.+)$/i)) p.id=m[1];
+  if(m=g(/Titular:\s*(.+)$/i)) p.titular=m[1];
+  if(m=g(/WhatsApp p\/ contato:\s*(.+)$/i)) p.zap=m[1];
+  if(m=g(/Ref\.?:\s*(.+)$/i)) p.ref=m[1];
+  if(m=g(/Recebedor:\s*(.+)$/i)) p.recebedor=m[1];
+  if(m=g(/^📅\s*Entrega:\s*(.+)$/i)) p.entrega=m[1];
+
+  // Extrai dados de Nota Fiscal
+  const iN=L.findIndex(l=>/NOTA FISCAL/i.test(limpa(l)));
+  if(iN>=0){ p.nf={}; for(let i=iN+1;i<L.length;i++){ const l=limpa(L[i]); if(!l) break; let mm;
+    if(mm=l.match(/^(CNPJ|CPF):\s*(.+)$/i)){p.nf.tipo=mm[1].toUpperCase();p.nf.doc=mm[2];}
+    else if(mm=l.match(/^(Raz[aã]o social|Nome):\s*(.+)$/i)) p.nf.nome=mm[2];
+    else if(mm=l.match(/^IE:\s*(.+)$/i)) p.nf.ie=mm[1];
+    else if(mm=l.match(/^E-mail NF-e:\s*(.+)$/i)) p.nf.email=mm[1]; } }
+
+  // Extrai cidade do endereço de entrega
+  if(m=g(/([A-Za-záéíóúãõü\s]+)\/(SP|RJ|MG|BA|PR|SC|RS|GO|MS|MT|DF|ES|PE|CE|PA|PI|AM|RO|RR|AC|TO|AP)/i)) {
+    p.cidade=m[1].trim();
+    const cidadeLower=p.cidade.toLowerCase();
+    p.cdd=CIDADE_CDD[cidadeLower]||'';
+  }
+  if(m=g(/^CEP\s*([\d-]+)/i)) p.end.cep=m[1];
+  if(m=g(/Subtotal:\s*(R\$\s*[\d.,]+)/i)) p.sub=num(m[1]);
+  if(m=g(/Desconto atacado\s*\((\d+)%\):\s*[−-]?\s*(R\$\s*[\d.,]+)/i)){p.descPct=m[1];p.desc=num(m[2]);}
+  if(m=g(/Frete:\s*(.+)$/i)) p.frete=/gr[aá]tis/i.test(m[1])?0:num(m[1]);
+  if(m=g(/\bTOTAL:\s*(R\$\s*[\d.,]+)/i)) p.total=num(m[1]);
+  if(m=g(/Pagamento:\s*(.+)$/i)){ p.pag=m[1]; const tr=p.pag.match(/troco para\s*([^)]+)\)?/i); if(tr){p.troco=tr[1];p.pag=p.pag.replace(/\s*\(troco.*$/i,'');} }
+  if(m=g(/^📝\s*Obs:\s*(.+)$/i)) p.obs=m[1];
+  if(m=g(/Voltagem da instala[cç][aã]o:\s*(.+)$/i)) p.volt=limpa(m[1]);
+  if(m=g(/gerado pelo cat[aá]logo.*?via\s+(.+)$/i)) p.origem=m[1].replace(/_$/,'');
+  // endereço: linhas entre "ENTREGA" e "Recebedor"/"CEP"
+  const iE=L.findIndex(l=>/ENTREGA/i.test(limpa(l)));
+  if(iE>=0){const ls=[];for(let i=iE+1;i<L.length;i++){const l=limpa(L[i]);if(!l)break;if(/^CEP|^🧭|^📥|^📅/.test(l))break;ls.push(l.replace(/^[—\-–]\s*/,'').replace(/\s*—\s*$/,''));} p.end.linhas=ls.filter(Boolean);}
+  // itens
+  for(const l0 of L){
+    const l=limpa(l0);
+    let mi=l.match(/^▪\s*(\d+)\s*[×x]\s*(.+?)\s*—\s*(R\$\s*[\d.,]+)\s*$/i);
+    if(mi){
+      let nome=mi[2], emb='', promo=false;
+      if(/🔥/.test(nome)){promo=true;nome=nome.replace(/\s*🔥[^\s]*\s*/,' ').trim();}
+      const me=nome.match(/^(.*)\(([^()]*)\)\s*$/); if(me){nome=me[1].trim();emb=me[2].trim();}
+      const q=parseInt(mi[1],10), tot=num(mi[3]);
+      p.itens.push({q,nome,emb,promo,tot,unit:q?tot/q:0});
+    }
+  }
+  // comodato
+  const iC=L.findIndex(l=>/COMODATO/i.test(limpa(l)));
+  if(iC>=0){
+    const cab=limpa(L[iC]); const mf=cab.match(/Faixa\s*(R\$\s*[\d.,]+)/i);
+    p.comodato={faixa:mf?mf[1]:'',itens:[],recusou:false,nenhum:false};
+    for(let i=iC+1;i<L.length;i++){const l=limpa(L[i]);if(!l)break;if(/^▪/.test(l)){const it=l.replace(/^▪\s*/,'');if(/RECUSOU/i.test(it))p.comodato.recusou=true;else if(/Nenhum item/i.test(it))p.comodato.nenhum=true;else p.comodato.itens.push(it);}}
+  }
+  // conferências
+  const somaItens=p.itens.reduce((a,i)=>a+i.tot,0);
+  if(p.sub!==null&&Math.abs(somaItens-p.sub)>0.05) p.avisos.push(`Soma dos itens (${fmt(somaItens)}) diferente do subtotal informado (${fmt(p.sub)}).`);
+  if(p.sub!==null&&p.frete!==null&&p.total!==null&&Math.abs(p.sub-(p.desc||0)+p.frete-p.total)>0.05) p.avisos.push(`Subtotal − desconto + frete (${fmt(p.sub-(p.desc||0)+p.frete)}) diferente do total informado (${fmt(p.total)}).`);
+  if(!p.itens.length) p.avisos.push('Nenhum item reconhecido — confira se a mensagem foi colada inteira.');
+  if(!p.titular) p.avisos.push('Nome do titular não encontrado.');
+  p.somaItens=somaItens;
+  return p;
+}
+
+function alterarModo(modo){
+  modoAtual=modo;
+  document.getElementById('btn-espelho').style.background=modo==='espelho'?'var(--azul-esc)':'var(--azul-claro)';
+  document.getElementById('btn-espelho').style.color=modo==='espelho'?'#fff':'var(--azul-esc)';
+  document.getElementById('btn-nf').style.background=modo==='nf'?'var(--azul-esc)':'var(--azul-claro)';
+  document.getElementById('btn-nf').style.color=modo==='nf'?'#fff':'var(--azul-esc)';
+  if(pedidoAtual){
+    if(modo==='espelho') renderFolha(pedidoAtual);
+    else renderNotaFiscal(pedidoAtual);
+  }
+}
+
+function renderNotaFiscal(p){
+  const vend=document.getElementById('vend').value.trim();
+  const cdd=document.getElementById('cdd').value.trim();
+  const nfTipo=document.getElementById('nf-tipo').value.trim();
+  const nfDoc=document.getElementById('nf-doc').value.trim();
+  const nfNome=document.getElementById('nf-nome').value.trim();
+  const nfIE=document.getElementById('nf-ie').value.trim();
+  const nfEmail=document.getElementById('nf-email').value.trim();
+  const nfData=nfTipo||nfDoc||nfNome||nfIE||nfEmail?{tipo:nfTipo||'Documento',doc:nfDoc||'',nome:nfNome||'',ie:nfIE||'',email:nfEmail||''}:null;
+
+  const sub=p.sub!==null?p.sub:p.somaItens, frete=p.frete!==null?p.frete:0, desc=p.desc||0, total=p.total!==null?p.total:sub-desc+frete;
+  const end=(p.end.linhas||[]).join(' — ');
+  const f=document.getElementById('folha'); f.classList.remove('vazia');
+
+  f.innerHTML=`
+  <div class="cab">
+    <div class="emp"><b>${EMPRESA.nome}</b><span>${EMPRESA.sub}</span><span>${EMPRESA.cnpj}</span></div>
+    <div class="num"><div class="t">NF-e</div><div class="n">${p.num||'—'}</div><div class="d">${p.data||''}</div></div>
+  </div>
+
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px">
+    <div class="nf-box"><h3>CDD</h3><p style="font-size:13pt;font-weight:900;color:var(--azul-esc)">${cdd||'—'}</p></div>
+    <div class="nf-box"><h3>Entrega</h3><p><b>${p.data||''}</b></p></div>
+  </div>
+
+  ${end?`<div class="nf-box" style="margin-top:10px"><h3>📍 Local de Entrega</h3><p>${end}${p.end.cep?`<br>CEP: ${p.end.cep}`:''}</p></div>`:''}
+
+  <div class="nf-box" style="margin-top:10px"><h3>🧾 Destinatário</h3><div class="nf-grid"><div><small>${nfData?.tipo||'Documento'}</small><b>${nfData?.doc||'—'}</b></div><div><small>${nfData?.tipo==='CPF'?'Nome':'Razão Social'}</small><b>${nfData?.nome||'—'}</b></div>${nfData?.tipo==='CNPJ'?`<div><small>Inscrição Estadual</small><b>${nfData?.ie||'—'}</b></div>`:''}${nfData?.email?`<div><small>E-mail</small><b>${nfData.email}</b></div>`:''}</div></div>
+
+  <table style="margin-top:14px">
+    <thead><tr><th class="c" style="width:40px">Item</th><th style="width:44px">Qtd</th><th>Descrição</th><th style="width:110px">Embalagem</th><th class="r" style="width:80px">V. Unit.</th><th class="r" style="width:90px">V. Total</th></tr></thead>
+    <tbody>${p.itens.map((i,idx)=>`<tr><td class="c"><b>${idx+1}</b></td><td class="c"><b>${i.q}</b></td><td class="item"><b>${i.nome}</b>${i.promo?'<small>🔥 promoção</small>':''}</td><td>${i.emb||'—'}</td><td class="r">${fmt(i.unit)}</td><td class="r"><b>${fmt(i.tot)}</b></td></tr>`).join('')}</tbody>
+  </table>
+
+  <div class="tot" style="margin-top:14px">
+    <div><span>Subtotal</span><span>${fmt(sub)}</span></div>
+    ${desc>0?`<div><span>🏷️ Desconto (${p.descPct}%)</span><span class="desc">− ${fmt(desc)}</span></div>`:''}
+    <div><span>Frete</span><span class="${frete===0?'desc':''}">${frete===0?'GRÁTIS':fmt(frete)}</span></div>
+    <div><span>TOTAL</span><span>${fmt(total)}</span></div>
+  </div>
+
+  <div class="blocos" style="margin-top:10px">
+    <div class="bloco"><h3>Contato</h3><p><b>📱 ${p.zap||'—'}</b><br>${p.recebedor?`Recebedor: ${p.recebedor}`:''}</p></div>
+    <div class="bloco"><h3>Pagamento</h3><p><b>${p.pag||'—'}</b>${p.troco?`<br>Troco: ${p.troco}`:''}</p></div>
+  </div>
+
+  ${p.obs?`<div class="obs" style="margin-top:10px"><b>Obs.:</b> ${p.obs}</div>`:''}
+
+  <div class="assin" style="margin-top:20px"><div>Emitido por</div><div>Recebimento</div><div>Assinatura</div></div>
+  <div class="rod"><span>${EMPRESA.nome}</span><span>Documento de venda — ${new Date().toLocaleDateString('pt-BR')}</span></div>`;
+}
+
+function gerar(){
+  const t=document.getElementById('txt').value.trim();
+  const erro=document.getElementById('erro'), av=document.getElementById('avisos');
+  erro.style.display='none'; av.style.display='none'; av.innerHTML='';
+  if(!t){erro.textContent='Cole a mensagem do pedido primeiro.';erro.style.display='block';return;}
+  const p=parse(t); pedidoAtual=p;
+  if(!p.itens.length&&!p.titular){erro.textContent='Não reconheci o formato. Cole a mensagem inteira, do "PEDIDO #" até o final.';erro.style.display='block';return;}
+  if(p.avisos.length){av.style.display='block';av.innerHTML=p.avisos.map(a=>`<div>⚠️ ${a}</div>`).join('');}
+
+  // Preencher automaticamente dados de Nota Fiscal
+  if(p.nf){
+    document.getElementById('nf-tipo').value=p.nf.tipo||'';
+    document.getElementById('nf-doc').value=p.nf.doc||'';
+    document.getElementById('nf-nome').value=p.nf.nome||'';
+    document.getElementById('nf-ie').value=p.nf.ie||'';
+    document.getElementById('nf-email').value=p.nf.email||'';
+  }
+
+  // Preencher automaticamente CDD
+  if(p.cdd){
+    document.getElementById('cdd').value=p.cdd;
+  }
+
+  // Renderizar no modo selecionado
+  if(modoAtual==='espelho') renderFolha(p);
+  else renderNotaFiscal(p);
+  if(window.innerWidth<860) setTimeout(()=>document.getElementById('folha').scrollIntoView({behavior:'smooth',block:'start'}),50);
+  document.getElementById('btn-pdf').disabled=false; document.getElementById('btn-print').disabled=false;
+  guardar(p,t);
+}
+
+function renderFolha(p){
+  const vend=document.getElementById('vend').value.trim();
+  const cdd=document.getElementById('cdd').value.trim();
+  const nfTipo=document.getElementById('nf-tipo').value.trim();
+  const nfDoc=document.getElementById('nf-doc').value.trim();
+  const nfNome=document.getElementById('nf-nome').value.trim();
+  const nfIE=document.getElementById('nf-ie').value.trim();
+  const nfEmail=document.getElementById('nf-email').value.trim();
+  const nfData=nfTipo||nfDoc||nfNome||nfIE||nfEmail?{tipo:nfTipo||'Documento',doc:nfDoc||'',nome:nfNome||'',ie:nfIE||'',email:nfEmail||''}:null;
+  const sub=p.sub!==null?p.sub:p.somaItens, frete=p.frete!==null?p.frete:0, desc=p.desc||0, total=p.total!==null?p.total:sub-desc+frete;
+  const end=(p.end.linhas||[]).join(' · ');
+  const f=document.getElementById('folha'); f.classList.remove('vazia');
+  f.innerHTML=`
+  <div class="cab">
+    <div class="emp"><b>${EMPRESA.nome}</b><span>${EMPRESA.sub}</span><span>${EMPRESA.cnpj}</span><span class="selo">Folha de conferência de pedido</span></div>
+    <div class="num"><div class="t">Pedido nº</div><div class="n">${p.num||'—'}</div><div class="d">${p.data||''}</div>${p.origem?`<div class="d" style="color:#777;font-size:8.5pt">via ${p.origem}</div>`:''}</div>
+  </div>
+  ${p.entrega?`<div class="ent-faixa"><span>📅 ENTREGA</span><b>${p.entrega}</b></div>`:''}
+  ${nfData||p.nf?`<div class="nf-box"><h3>🧾 Dados para emissão da nota fiscal</h3><div class="nf-grid"><div><small>${(nfData||p.nf).tipo||'Documento'}</small><b>${(nfData||p.nf).doc||'—'}</b></div><div><small>${(nfData||p.nf).tipo==='CPF'?'Nome':'Razão social'}</small><b>${(nfData||p.nf).nome||'—'}</b></div>${(nfData||p.nf).tipo==='CNPJ'?`<div><small>Inscrição estadual</small><b>${(nfData||p.nf).ie||'—'}</b></div>`:''}${(nfData||p.nf).email?`<div><small>E-mail NF-e</small><b>${(nfData||p.nf).email}</b></div>`:''}</div></div>`:`<div class="nf-box falta"><h3>🧾 Nota fiscal</h3><p>Pedido sem dados de nota fiscal — você pode adicionar acima.</p></div>`}
+  <div class="blocos">
+    <div class="bloco"><h3>Cliente</h3><p><b>${p.titular||'—'}</b><br>ID de cadastro: <b>${p.id||'—'}</b><br>WhatsApp: <b>${p.zap||'—'}</b>${cdd?`<br>CDD: <b>${cdd}</b>`:''}</p></div>
+    <div class="bloco"><h3>Entrega</h3><p>${p.recebedor?`Recebedor: <b>${p.recebedor}</b>`:''}<br>${end||'CEP não informado'}${p.ref?`<br>Ref.: ${p.ref}`:''}</p></div>
+  </div>
+  <table>
+    <thead><tr><th style="width:26px"></th><th class="c" style="width:44px">Qtd</th><th>Produto</th><th style="width:110px">Embalagem</th><th class="r" style="width:80px">Unit.</th><th class="r" style="width:90px">Total</th></tr></thead>
+    <tbody>${p.itens.map(i=>`<tr><td class="c"><span class="chk"></span></td><td class="c"><b>${i.q}</b></td><td class="item"><b>${i.nome}</b>${i.promo?'<small>🔥 promoção</small>':''}</td><td>${i.emb||'—'}</td><td class="r">${fmt(i.unit)}</td><td class="r"><b>${fmt(i.tot)}</b></td></tr>`).join('')}</tbody>
+  </table>
+  <div class="tot">
+    <div><span>Itens (${p.itens.reduce((a,i)=>a+i.q,0)} un · ${p.itens.length} produtos)</span><span>${fmt(sub)}</span></div>
+    ${desc>0?`<div><span>🏷️ Desconto atacado (${p.descPct}%)</span><span class="desc">− ${fmt(desc)}</span></div>`:''}
+    <div><span>Frete</span><span class="${frete===0?'desc':''}">${frete===0?'GRÁTIS':fmt(frete)}</span></div>
+    <div><span>TOTAL</span><span>${fmt(total)}</span></div>
+  </div>
+  <div class="blocos" style="margin-top:10px">
+    <div class="bloco"><h3>Pagamento</h3><p><b>${p.pag||'—'}</b>${p.troco?`<br>Troco para: ${p.troco}`:''}</p></div>
+    <div class="bloco"><h3>Conferência</h3><p>Separado por: ______________<br>Conferido por: <b>${vend||'______________'}</b><br>Data: ____/____/______</p></div>
+  </div>
+  ${p.comodato?`<div class="comod"><h3>🎁 Comodato${p.comodato.faixa?` — Faixa ${p.comodato.faixa}`:''}</h3><p>${p.comodato.recusou?'Cliente <b>recusou</b> o comodato.':p.comodato.nenhum?'Nenhum item de comodato selecionado.':p.comodato.itens.map(i=>'☐ '+i).join('<br>')}${p.volt?`<br>⚡ Voltagem da instalação: <b>${p.volt}</b>`:''}</p></div>`:''}
+  ${p.obs?`<div class="obs"><b>Obs. do cliente:</b> ${p.obs}</div>`:''}
+  ${p.avisos.length?`<div class="obs" style="border-color:var(--verm);background:#fff3f3"><b>Atenção na conferência:</b><br>${p.avisos.join('<br>')}</div>`:''}
+  <div class="assin"><div>Separação</div><div>Conferência</div><div>Recebido pelo cliente</div></div>
+  <div class="rod"><span>${EMPRESA.nome} · pedido ${p.num||''}</span><span>Documento de conferência interna — não é documento fiscal</span></div>`;
+}
+
+function baixarPDF(){
+  if(!pedidoAtual) return;
+  const el=document.getElementById('folha');
+  const nome=`Pedido_${(pedidoAtual.num||'sem-numero').replace(/[^\w-]/g,'')}_${(pedidoAtual.titular||'').replace(/[^\wÀ-ú]+/g,'_').slice(0,30)}.pdf`;
+  if(typeof html2pdf==='undefined'){window.print();return;}
+  const w=document.querySelector('.folha-wrap'); const z=w.style.zoom; w.style.zoom='1';
+  html2pdf().set({margin:0,filename:nome,image:{type:'jpeg',quality:.98},html2canvas:{scale:2,useCORS:true},jsPDF:{unit:'mm',format:'a4',orientation:'portrait'}}).from(el).save().then(()=>{w.style.zoom=z;}).catch(()=>{w.style.zoom=z;window.print();});
+}
+function limpar(){document.getElementById('txt').value='';document.getElementById('vend').value='';document.getElementById('cdd').value='';['nf-tipo','nf-doc','nf-nome','nf-ie','nf-email'].forEach(id=>document.getElementById(id).value='');pedidoAtual=null;const f=document.getElementById('folha');f.className='folha vazia';f.innerHTML='Cole um pedido ao lado e clique em <b>&nbsp;Gerar folha</b>';document.getElementById('erro').style.display='none';document.getElementById('avisos').style.display='none';document.getElementById('btn-pdf').disabled=true;document.getElementById('btn-print').disabled=true;}
+
+/* últimos pedidos (neste navegador) */
+function guardar(p,t){try{const arr=JSON.parse(localStorage.getItem('conf_pedidos')||'[]').filter(x=>x.num!==p.num);arr.unshift({num:p.num,titular:p.titular,total:p.total,data:p.data,entrega:p.entrega,txt:t,em:Date.now()});localStorage.setItem('conf_pedidos',JSON.stringify(arr.slice(0,100)));}catch(e){}}
+function verUltimos(){
+  const box=document.getElementById('ultimos'); let arr=[];try{arr=JSON.parse(localStorage.getItem('conf_pedidos')||'[]');}catch(e){}
+  if(box.innerHTML){box.innerHTML='';return;}
+  if(!arr.length){box.innerHTML='<div class="dica">Nenhum pedido guardado ainda.</div>';return;}
+  box.innerHTML='<div style="margin-top:8px;display:flex;flex-direction:column;gap:6px">'+arr.map((x,i)=>`<button class="b3" style="text-align:left;padding:8px 10px;font-weight:600;font-size:.8rem" onclick="abrirUltimo(${i})"><b>#${x.num||'—'}</b> · ${x.titular||''} · ${x.total!=null?fmt(x.total):''}<br><span style="color:var(--cinza)">${x.data||''}${x.entrega?' · 📅 '+x.entrega:''}</span></button>`).join('')+'</div>';
+}
+function abrirUltimo(i){try{const arr=JSON.parse(localStorage.getItem('conf_pedidos')||'[]');if(arr[i]){document.getElementById('txt').value=arr[i].txt;gerar();document.getElementById('ultimos').innerHTML='';}}catch(e){}}
+document.getElementById('vend').addEventListener('input',()=>{
+  if(pedidoAtual){
+    if(modoAtual==='espelho') renderFolha(pedidoAtual);
+    else renderNotaFiscal(pedidoAtual);
+  }
+});
+['nf-tipo','nf-doc','nf-nome','nf-ie','nf-email','cdd'].forEach(id=>{
+  const el=document.getElementById(id);
+  if(el) el.addEventListener('input',()=>{
+    if(pedidoAtual){
+      if(modoAtual==='espelho') renderFolha(pedidoAtual);
+      else renderNotaFiscal(pedidoAtual);
+    }
+  });
+});
+</script>
+</body>
+</html>
