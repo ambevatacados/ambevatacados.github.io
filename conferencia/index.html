@@ -32,6 +32,56 @@ button{border:none;border-radius:12px;padding:12px 16px;font-weight:800;font-siz
 .campo{margin-top:10px}
 .campo input{width:100%;border:1.5px solid var(--borda);border-radius:10px;padding:9px 11px;font-size:.88rem;outline:none}
 .campo input:focus{border-color:var(--azul)}
+.campo.modelo label{font-size:.74rem;text-transform:uppercase;letter-spacing:.5px;color:var(--cinza);font-weight:800;margin-bottom:5px;display:block}
+.seg{display:flex;border:1.5px solid var(--borda);border-radius:10px;overflow:hidden}
+.seg button{flex:1;border-radius:0;background:#fff;color:var(--cinza);font-size:.8rem;padding:9px 6px}
+.seg button.on{background:var(--azul);color:#fff}
+
+/* ===== MODELO ROMANEIO (estilo nota) ===== */
+.rom{font-family:Arial,Helvetica,sans-serif;font-size:8.5pt;color:#000;padding:8mm 8mm 10mm}
+.rom *{box-sizing:border-box}
+.rom .canhoto{display:grid;grid-template-columns:1fr 34mm;border:1px solid #000}
+.rom .canhoto .esq{border-right:1px solid #000}
+.rom .canhoto .lin{display:grid;grid-template-columns:34mm 1fr 1fr;border-top:1px solid #000}
+.rom .canhoto .lin:first-child{border-top:none}
+.rom .cx{padding:2px 4px;min-height:9mm;border-right:1px solid #000}
+.rom .cx:last-child{border-right:none}
+.rom .cx.wide{grid-column:1/-1}
+.rom .lab{display:block;font-size:6pt;text-transform:uppercase;letter-spacing:.2px;color:#222;line-height:1.1}
+.rom .val{display:block;font-family:"Courier New",monospace;font-size:9.5pt;font-weight:700;line-height:1.2;word-break:break-word}
+.rom .val.sm{font-size:8.5pt}
+.rom .val.xl{font-size:13pt}
+.rom .canhoto .dir{padding:3px 4px;text-align:center;display:flex;flex-direction:column;justify-content:center;gap:2px}
+.rom .corte{border-top:1px dashed #000;margin:5px 0;height:0}
+.rom .cab{display:grid;grid-template-columns:1fr 46mm 1fr;border:1px solid #000}
+.rom .cab>div{padding:4px 5px;border-right:1px solid #000}
+.rom .cab>div:last-child{border-right:none}
+.rom .emit b{display:block;font-size:13pt;letter-spacing:.3px}
+.rom .emit span{display:block;font-size:8pt;line-height:1.35}
+.rom .meio{text-align:center;display:flex;flex-direction:column;justify-content:center;gap:2px}
+.rom .meio .t1{font-size:11pt;font-weight:900;letter-spacing:1px}
+.rom .meio .t2{font-size:7pt;line-height:1.2}
+.rom .meio .t3{font-size:7pt;font-weight:700;border:1px solid #000;padding:2px;margin-top:3px}
+.rom .num .lab{font-size:6.5pt}
+.rom .sec{font-size:6.5pt;font-weight:900;text-transform:uppercase;margin:4px 0 1px;letter-spacing:.3px}
+.rom .grid{display:grid;border:1px solid #000;border-bottom:none}
+.rom .grid>div{border-right:1px solid #000;border-bottom:1px solid #000;padding:2px 4px;min-height:8.5mm}
+.rom .grid>div.fim{border-right:none}
+.rom table.prod{width:100%;border-collapse:collapse;border:1px solid #000;font-size:8pt}
+.rom table.prod th{border:1px solid #000;font-size:6.5pt;text-transform:uppercase;padding:2px 3px;background:#eee;color:#000;font-weight:700;text-align:left}
+.rom table.prod td{border-left:1px solid #000;border-right:1px solid #000;padding:2px 3px;vertical-align:top;font-family:"Courier New",monospace;font-size:8.5pt}
+.rom table.prod tr:last-child td{border-bottom:1px solid #000}
+.rom table.prod .r{text-align:right}
+.rom table.prod .c{text-align:center}
+.rom table.prod .ck{width:9px;height:9px;border:1px solid #000;display:inline-block}
+.rom .bloco{border-radius:0;border:1px solid #000;padding:3px 5px;min-height:14mm;font-family:"Courier New",monospace;font-size:8pt;line-height:1.35;white-space:pre-wrap}
+.rom .dados{display:grid;grid-template-columns:2fr 1fr;gap:0}
+.rom .dados .bloco:first-child{border-right:none}
+.rom .rodape{margin-top:4px;font-size:6.5pt;display:flex;justify-content:space-between;border-top:1px solid #000;padding-top:2px}
+.rom .assin{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10mm;margin-top:9mm;padding:0 4mm}
+.rom .assin div{border-top:1px solid #000;padding-top:2px;font-size:6.5pt;text-align:center;text-transform:uppercase}
+.rom .aviso{border:2px solid #000;padding:3px 5px;font-weight:900;font-size:8pt;margin-top:4px;text-align:center}
+.rom .alerta{border:2px solid #000;background:#eee;padding:3px 5px;font-size:8pt;font-weight:700;margin-top:4px}
 
 /* ===== FOLHA (NOTA) ===== */
 .folha-wrap{overflow:auto}
@@ -88,34 +138,19 @@ td.item small{color:#666;font-size:8.5pt}
   .top,.painel,.no-print{display:none !important}
   .wrap{display:block;padding:0;max-width:none}
   .folha{box-shadow:none;margin:0;width:210mm;min-height:297mm;page-break-after:always}
-  .folha-wrap{overflow:visible}
+  .folha-wrap{overflow:visible;zoom:1 !important}
 }
 </style>
 </head>
 <body>
-<div class="top"><div><h1>📋 Conferência de Pedidos</h1><small>Ambev Atacados — cole o pedido do WhatsApp e gere em PDF</small></div></div>
+<div class="top"><div><h1>🧾 Conferência de Pedidos</h1><small>Ambev Atacados — cole o pedido do WhatsApp e gere a folha de conferência em PDF</small></div></div>
 
 <div class="wrap">
   <div class="painel">
     <label for="txt">Cole o pedido aqui</label>
-
-    <div class="campo" style="margin-top:14px;display:flex;gap:8px">
-      <button class="b1" id="btn-espelho" onclick="alterarModo('espelho')" style="flex:1;background:var(--azul-esc)">📋 Espelho simples</button>
-      <button class="b2" id="btn-nf" onclick="alterarModo('nf')" style="flex:1">📄 Espelho completo</button>
-    </div>
     <textarea id="txt" placeholder="Cole aqui a mensagem do pedido exatamente como chegou no WhatsApp…"></textarea>
     <div class="campo"><input id="vend" type="text" placeholder="Conferido por (opcional) — ex.: Rodrigo"></div>
-
-    <label style="margin-top:16px">Dados para nota fiscal (opcional)</label>
-    <div class="campo"><input id="nf-tipo" type="text" placeholder="Tipo: CNPJ ou CPF"></div>
-    <div class="campo"><input id="nf-doc" type="text" placeholder="Documento (CNPJ/CPF)"></div>
-    <div class="campo"><input id="nf-nome" type="text" placeholder="Razão Social / Nome"></div>
-    <div class="campo"><input id="nf-ie" type="text" placeholder="Inscrição Estadual (CNPJ)"></div>
-    <div class="campo"><input id="nf-email" type="email" placeholder="E-mail NF-e"></div>
-
-    <label style="margin-top:16px">CDD (Código do Cliente)</label>
-    <div class="campo"><input id="cdd" type="text" placeholder="Código de Distribuidor Destino"></div>
-
+    <div class="campo modelo"><label>Modelo da folha</label><div class="seg"><button type="button" id="mod-rom" class="on" onclick="setModelo('romaneio')">🧾 Romaneio (estilo nota)</button><button type="button" id="mod-mod" onclick="setModelo('completo')">📄 Espelho completo</button></div></div>
     <div class="btns">
       <button class="b1" onclick="gerar()">📄 Gerar folha</button>
       <button class="b2" onclick="baixarPDF()" id="btn-pdf" disabled>⬇️ Baixar PDF</button>
@@ -134,36 +169,16 @@ td.item small{color:#666;font-size:8.5pt}
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 <script>
-const EMPRESA={nome:'Ambev Atacados',sub:'Distribuidora oficial · Atacado e varejo',cnpj:'Ambev S.A. — CNPJ 07.526.557/0001-00',zap:'45 9846-4568'};
+const EMPRESA={nome:'Ambev Atacados',sub:'Distribuidora oficial · Atacado e varejo',cnpj:'Ambev S.A. — CNPJ 07.526.557/0001-00',zap:'(45) 98464-568'};
 const fmt=v=>'R$ '+(Math.round(v*100)/100).toLocaleString('pt-BR',{minimumFractionDigits:2,maximumFractionDigits:2});
 const num=s=>{ if(!s) return 0; const m=String(s).replace(/[^\d,.-]/g,''); return parseFloat(m.replace(/\./g,'').replace(',','.'))||0; };
 const limpa=s=>s.replace(/\*/g,'').replace(/_/g,'').trim();
 let pedidoAtual=null;
-let modoAtual='espelho'; // 'espelho' ou 'nf'
-
-// Mapeamento de cidades para CDD (Código de Distribuidor Destino)
-const CIDADE_CDD={
-  'itaquaquecetuba':'ITAQ',
-  'são paulo':'SP01',
-  'guarulhos':'GUA01',
-  'santo andré':'SA01',
-  'são bernardo do campo':'SBC01',
-  'diadema':'DIA01',
-  'mauá':'MAU01',
-  'ribeirão pires':'RP01',
-  'campinas':'CAM01',
-  'sorocaba':'SOR01',
-  'santos':'SAN01',
-  'são josé dos campos':'SJC01',
-  'bauru':'BAU01',
-  'piracicaba':'PIR01',
-  'ribeirão preto':'RBP01'
-};
 
 function parse(t){
   t=t.replace(/\r/g,'');
   const L=t.split('\n').map(l=>l.trim());
-  const p={num:'',data:'',id:'',titular:'',zap:'',end:{},ref:'',recebedor:'',entrega:'',nf:null,cidade:'',cdd:'',itens:[],sub:null,desc:null,descPct:'',frete:null,total:null,pag:'',troco:'',obs:'',comodato:null,volt:'',origem:'',avisos:[]};
+  const p={num:'',data:'',id:'',titular:'',zap:'',end:{},ref:'',recebedor:'',entrega:'',nf:null,itens:[],sub:null,desc:null,descPct:'',frete:null,total:null,pag:'',troco:'',obs:'',comodato:null,volt:'',origem:'',avisos:[]};
   const g=(re)=>{for(const l of L){const m=limpa(l).match(re);if(m)return m;}return null;};
   let m;
   if(m=g(/PEDIDO\s*#?\s*([\w-]+)/i)) p.num=m[1];
@@ -174,21 +189,12 @@ function parse(t){
   if(m=g(/Ref\.?:\s*(.+)$/i)) p.ref=m[1];
   if(m=g(/Recebedor:\s*(.+)$/i)) p.recebedor=m[1];
   if(m=g(/^📅\s*Entrega:\s*(.+)$/i)) p.entrega=m[1];
-
-  // Extrai dados de Nota Fiscal
   const iN=L.findIndex(l=>/NOTA FISCAL/i.test(limpa(l)));
   if(iN>=0){ p.nf={}; for(let i=iN+1;i<L.length;i++){ const l=limpa(L[i]); if(!l) break; let mm;
     if(mm=l.match(/^(CNPJ|CPF):\s*(.+)$/i)){p.nf.tipo=mm[1].toUpperCase();p.nf.doc=mm[2];}
     else if(mm=l.match(/^(Raz[aã]o social|Nome):\s*(.+)$/i)) p.nf.nome=mm[2];
     else if(mm=l.match(/^IE:\s*(.+)$/i)) p.nf.ie=mm[1];
     else if(mm=l.match(/^E-mail NF-e:\s*(.+)$/i)) p.nf.email=mm[1]; } }
-
-  // Extrai cidade do endereço de entrega
-  if(m=g(/([A-Za-záéíóúãõü\s]+)\/(SP|RJ|MG|BA|PR|SC|RS|GO|MS|MT|DF|ES|PE|CE|PA|PI|AM|RO|RR|AC|TO|AP)/i)) {
-    p.cidade=m[1].trim();
-    const cidadeLower=p.cidade.toLowerCase();
-    p.cdd=CIDADE_CDD[cidadeLower]||'';
-  }
   if(m=g(/^CEP\s*([\d-]+)/i)) p.end.cep=m[1];
   if(m=g(/Subtotal:\s*(R\$\s*[\d.,]+)/i)) p.sub=num(m[1]);
   if(m=g(/Desconto atacado\s*\((\d+)%\):\s*[−-]?\s*(R\$\s*[\d.,]+)/i)){p.descPct=m[1];p.desc=num(m[2]);}
@@ -232,33 +238,37 @@ function parse(t){
   return p;
 }
 
-function alterarModo(modo){
-  modoAtual=modo;
-  document.getElementById('btn-espelho').style.background=modo==='espelho'?'var(--azul-esc)':'var(--azul-claro)';
-  document.getElementById('btn-espelho').style.color=modo==='espelho'?'#fff':'var(--azul-esc)';
-  document.getElementById('btn-nf').style.background=modo==='nf'?'var(--azul-esc)':'var(--azul-claro)';
-  document.getElementById('btn-nf').style.color=modo==='nf'?'#fff':'var(--azul-esc)';
-  if(pedidoAtual){
-    if(modo==='espelho') renderFolha(pedidoAtual);
-    else renderNotaFiscal(pedidoAtual);
-  }
+function gerar(){
+  const t=document.getElementById('txt').value.trim();
+  const erro=document.getElementById('erro'), av=document.getElementById('avisos');
+  erro.style.display='none'; av.style.display='none'; av.innerHTML='';
+  if(!t){erro.textContent='Cole a mensagem do pedido primeiro.';erro.style.display='block';return;}
+  const p=parse(t); pedidoAtual=p;
+  if(!p.itens.length&&!p.titular){erro.textContent='Não reconheci o formato. Cole a mensagem inteira, do "PEDIDO #" até o final.';erro.style.display='block';return;}
+  if(p.avisos.length){av.style.display='block';av.innerHTML=p.avisos.map(a=>`<div>⚠️ ${a}</div>`).join('');}
+  renderFolha(p);
+  if(window.innerWidth<860) setTimeout(()=>document.getElementById('folha').scrollIntoView({behavior:'smooth',block:'start'}),50);
+  document.getElementById('btn-pdf').disabled=false; document.getElementById('btn-print').disabled=false;
+  guardar(p,t);
 }
 
-function renderNotaFiscal(p){
+let modelo='romaneio';
+try{modelo=localStorage.getItem('conf_modelo')||'romaneio';if(modelo==='moderno')modelo='completo';}catch(e){}
+function setModelo(m){modelo=m;try{localStorage.setItem('conf_modelo',m);}catch(e){}document.getElementById('mod-rom').classList.toggle('on',m==='romaneio');document.getElementById('mod-mod').classList.toggle('on',m==='completo');if(pedidoAtual)renderFolha(pedidoAtual);}
+document.addEventListener('DOMContentLoaded',()=>{setModelo(modelo);});
+function esc(v){return String(v==null?'':v).replace(/&/g,'&amp;').replace(/</g,'&lt;');}
+function renderFolha(p){
+  if(modelo==='romaneio') return renderRomaneio(p);
+  return renderEspelhoCompleto(p);
+}
+function renderEspelhoCompleto(p){
   const vend=document.getElementById('vend').value.trim();
-  const cdd=document.getElementById('cdd').value.trim()||p.cdd||'';
-  const nfTipo=document.getElementById('nf-tipo').value.trim();
-  const nfDoc=document.getElementById('nf-doc').value.trim();
-  const nfNome=document.getElementById('nf-nome').value.trim();
-  const nfIE=document.getElementById('nf-ie').value.trim();
-  const nfEmail=document.getElementById('nf-email').value.trim();
-  const nf=(nfTipo||nfDoc||nfNome||nfIE||nfEmail)?{tipo:nfTipo||'Documento',doc:nfDoc,nome:nfNome,ie:nfIE,email:nfEmail}:(p.nf||null);
-
+  const nf=p.nf||null;
   const sub=p.sub!==null?p.sub:p.somaItens, frete=p.frete!==null?p.frete:0, desc=p.desc||0, total=p.total!==null?p.total:sub-desc+frete;
   const end=(p.end.linhas||[]).join(' — ');
   const md=(p.data||'').match(/(\d{2}\/\d{2}\/\d{4})\s*(\d{2}:\d{2})?/); const dData=md?md[1]:(p.data||'—'), dHora=md&&md[2]?md[2]:'—';
   const unTot=p.itens.reduce((a,i)=>a+i.q,0);
-  const f=document.getElementById('folha'); f.classList.remove('vazia');
+  const f=document.getElementById('folha'); f.className='folha';
 
   f.innerHTML=`
   <style>
@@ -270,7 +280,7 @@ function renderNotaFiscal(p){
     .ec-cab .r .tt{font-size:11pt;font-weight:900;letter-spacing:1.5px;text-transform:uppercase}
     .ec-cab .r .nn{font-size:16pt;font-weight:900;margin-top:2px}
     .ec-cab .r .dd{font-size:8.5pt;opacity:.9;margin-top:2px}
-    .ec-grid{display:grid;grid-template-columns:repeat(6,1fr);border:1px solid var(--azul-esc);border-radius:8px;overflow:hidden;margin-top:8px}
+    .ec-grid{display:grid;grid-template-columns:repeat(5,1fr);border:1px solid var(--azul-esc);border-radius:8px;overflow:hidden;margin-top:8px}
     .ec-grid div{padding:5px 8px;border-right:1px solid #cfd8e6;font-size:9.5pt;font-weight:700;color:#222}
     .ec-grid div:last-child{border-right:none}
     .ec-grid small{display:block;font-size:7pt;color:var(--azul-esc);text-transform:uppercase;letter-spacing:.6px;font-weight:800}
@@ -288,6 +298,7 @@ function renderNotaFiscal(p){
     .ec-fim{display:grid;grid-template-columns:1fr 82mm;gap:8px;margin-top:8px;align-items:start}
     .ec-fim .tot{margin:0;width:auto}
     .ec-selo{margin-top:4px;display:inline-block;border:1.5px solid var(--azul-esc);color:var(--azul-esc);border-radius:6px;padding:1px 7px;font-size:7.5pt;font-weight:900;letter-spacing:1px;text-transform:uppercase}
+    .ec-rod{margin-top:14px;font-size:8pt;color:#777;display:flex;justify-content:space-between;border-top:1px solid #e3eaf4;padding-top:5px}
   </style>
 
   <div class="ec-cab">
@@ -300,7 +311,6 @@ function renderNotaFiscal(p){
     <div><small>Hora</small>${dHora}</div>
     <div><small>Valor total</small>${fmt(total)}</div>
     <div><small>Itens</small>${unTot} un · ${p.itens.length} prod.</div>
-    <div><small>CDD</small><span style="color:${cdd?'var(--verm)':'#999'};font-weight:900">${cdd||'—'}</span></div>
     <div><small>Cód. cliente</small>${p.id||'—'}</div>
   </div>
 
@@ -336,84 +346,90 @@ function renderNotaFiscal(p){
   ${p.avisos.length?`<div class="obs" style="border-color:var(--verm);background:#fff3f3"><b>Atenção na conferência:</b><br>${p.avisos.join('<br>')}</div>`:''}
 
   <div class="assin"><div>Emitido por</div><div>Recebimento</div><div>Autorizado por</div></div>
-  <div class="rod" style="position:static;margin-top:14px;left:auto;right:auto"><span>${EMPRESA.nome} · Espelho do pedido ${p.num||''}</span><span>Documento de conferência interna — não é documento fiscal · ${new Date().toLocaleDateString('pt-BR')} ${new Date().toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'})}</span></div>`;
+  <div class="ec-rod"><span>${EMPRESA.nome} · Espelho do pedido ${p.num||''}</span><span>Documento de conferência interna — não é documento fiscal · ${new Date().toLocaleDateString('pt-BR')} ${new Date().toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'})}</span></div>`;
 }
 
-function gerar(){
-  const t=document.getElementById('txt').value.trim();
-  const erro=document.getElementById('erro'), av=document.getElementById('avisos');
-  erro.style.display='none'; av.style.display='none'; av.innerHTML='';
-  if(!t){erro.textContent='Cole a mensagem do pedido primeiro.';erro.style.display='block';return;}
-  const p=parse(t); pedidoAtual=p;
-  if(!p.itens.length&&!p.titular){erro.textContent='Não reconheci o formato. Cole a mensagem inteira, do "PEDIDO #" até o final.';erro.style.display='block';return;}
-  if(p.avisos.length){av.style.display='block';av.innerHTML=p.avisos.map(a=>`<div>⚠️ ${a}</div>`).join('');}
-
-  // Preencher automaticamente dados de Nota Fiscal
-  if(p.nf){
-    document.getElementById('nf-tipo').value=p.nf.tipo||'';
-    document.getElementById('nf-doc').value=p.nf.doc||'';
-    document.getElementById('nf-nome').value=p.nf.nome||'';
-    document.getElementById('nf-ie').value=p.nf.ie||'';
-    document.getElementById('nf-email').value=p.nf.email||'';
-  }
-
-  // Preencher automaticamente CDD
-  if(p.cdd){
-    document.getElementById('cdd').value=p.cdd;
-  }
-
-  // Renderizar no modo selecionado
-  if(modoAtual==='espelho') renderFolha(p);
-  else renderNotaFiscal(p);
-  if(window.innerWidth<860) setTimeout(()=>document.getElementById('folha').scrollIntoView({behavior:'smooth',block:'start'}),50);
-  document.getElementById('btn-pdf').disabled=false; document.getElementById('btn-print').disabled=false;
-  guardar(p,t);
-}
-
-function renderFolha(p){
+function renderRomaneio(p){
   const vend=document.getElementById('vend').value.trim();
-  const cdd=document.getElementById('cdd').value.trim();
-  const nfTipo=document.getElementById('nf-tipo').value.trim();
-  const nfDoc=document.getElementById('nf-doc').value.trim();
-  const nfNome=document.getElementById('nf-nome').value.trim();
-  const nfIE=document.getElementById('nf-ie').value.trim();
-  const nfEmail=document.getElementById('nf-email').value.trim();
-  const nfData=nfTipo||nfDoc||nfNome||nfIE||nfEmail?{tipo:nfTipo||'Documento',doc:nfDoc||'',nome:nfNome||'',ie:nfIE||'',email:nfEmail||''}:null;
   const sub=p.sub!==null?p.sub:p.somaItens, frete=p.frete!==null?p.frete:0, desc=p.desc||0, total=p.total!==null?p.total:sub-desc+frete;
-  const end=(p.end.linhas||[]).join(' · ');
-  const f=document.getElementById('folha'); f.classList.remove('vazia');
+  const nUn=p.itens.reduce((a,i)=>a+i.q,0);
+  const endL=(p.end.linhas||[]);
+  const logr=endL[0]||'', cidUF=endL.slice(1).join(' ')||'';
+  const mCid=cidUF.match(/^(.*)\/([A-Z]{2})$/); const cidade=mCid?mCid[1]:cidUF, uf=mCid?mCid[2]:'';
+  const [dataEm, horaEm]=(p.data||'').split(' ');
+  const nf=p.nf||{};
+  const f=document.getElementById('folha'); f.classList.remove('vazia'); f.className='folha rom';
+  
+  // Logo SVG da Ambev
+  const logoSvg='<img src="data:image/png;base64,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" alt="Ambev" style="width:44px;height:44px;object-fit:contain;display:block;border:1px solid #000">';
+  
+  const cx=(lab,val,cls='')=>`<div class="${cls}"><span class="lab">${lab}</span><span class="val ${cls.includes('sm')?'sm':''}">${esc(val)||'&nbsp;'}</span></div>`;
   f.innerHTML=`
-  <div class="cab">
-    <div class="emp"><b>${EMPRESA.nome}</b><span>${EMPRESA.sub}</span><span>${EMPRESA.cnpj}</span><span class="selo">Folha de conferência de pedido</span></div>
-    <div class="num"><div class="t">Pedido nº</div><div class="n">${p.num||'—'}</div><div class="d">${p.data||''}</div>${p.origem?`<div class="d" style="color:#777;font-size:8.5pt">via ${p.origem}</div>`:''}</div>
+  <div class="canhoto">
+    <div class="esq">
+      <div class="lin"><div class="cx wide" style="min-height:6mm"><span class="lab" style="font-size:6.5pt">RECEBEMOS DE ${esc(EMPRESA.nome.toUpperCase())} OS PRODUTOS CONSTANTES DO PEDIDO INDICADO AO LADO</span></div></div>
+      <div class="lin"><div class="cx"><span class="lab">Data do recebimento</span><span class="val">&nbsp;</span></div><div class="cx"><span class="lab">Identificação e assinatura do recebedor</span><span class="val">&nbsp;</span></div><div class="cx"><span class="lab">Recebedor previsto</span><span class="val sm">${esc(p.recebedor||'')}</span></div></div>
+    </div>
+    <div class="dir"><span class="lab">Pedido</span><span class="val xl">${esc(p.num||'—')}</span><span class="lab">Espelho de conferência</span><span class="lab">Folha 1/1</span></div>
   </div>
-  ${p.entrega?`<div class="ent-faixa"><span>📅 ENTREGA</span><b>${p.entrega}</b></div>`:''}
-  ${nfData||p.nf?`<div class="nf-box"><h3>🧾 Dados para emissão da nota fiscal</h3><div class="nf-grid"><div><small>${(nfData||p.nf).tipo||'Documento'}</small><b>${(nfData||p.nf).doc||'—'}</b></div><div><small>${(nfData||p.nf).tipo==='CPF'?'Nome':'Razão social'}</small><b>${(nfData||p.nf).nome||'—'}</b></div>${(nfData||p.nf).tipo==='CNPJ'?`<div><small>Inscrição estadual</small><b>${(nfData||p.nf).ie||'—'}</b></div>`:''}${(nfData||p.nf).email?`<div><small>E-mail NF-e</small><b>${(nfData||p.nf).email}</b></div>`:''}</div></div>`:`<div class="nf-box falta"><h3>🧾 Nota fiscal</h3><p>Pedido sem dados de nota fiscal — você pode adicionar acima.</p></div>`}
-  <div class="blocos">
-    <div class="bloco"><h3>Cliente</h3><p><b>${p.titular||'—'}</b><br>ID de cadastro: <b>${p.id||'—'}</b><br>WhatsApp: <b>${p.zap||'—'}</b>${cdd?`<br>CDD: <b>${cdd}</b>`:''}</p></div>
-    <div class="bloco"><h3>Entrega</h3><p>${p.recebedor?`Recebedor: <b>${p.recebedor}</b>`:''}<br>${end||'CEP não informado'}${p.ref?`<br>Ref.: ${p.ref}`:''}</p></div>
+  <div class="corte"></div>
+  <div style="border:1px solid #000;padding:4px;margin-bottom:6px;display:grid;grid-template-columns:70px 1fr 100px;gap:4px">
+    <div style="border-right:1px solid #000;display:flex;align-items:center;justify-content:center">${logoSvg}</div>
+    <div style="border-right:1px solid #000;padding:2px">
+      <div style="font-weight:bold;font-size:10pt">${esc(EMPRESA.nome)}</div>
+      <div style="font-size:7pt">${esc(EMPRESA.sub)}</div>
+      <div style="font-size:7pt">${esc(EMPRESA.cnpj)}</div>
+    </div>
+    <div style="text-align:center;padding:2px;display:flex;flex-direction:column;justify-content:center;font-size:8pt">
+      <div style="font-weight:bold">DANFE</div>
+      <div style="font-size:6pt">Documento</div>
+      <div style="font-size:6pt">Fiscal</div>
+    </div>
   </div>
-  <table>
-    <thead><tr><th style="width:26px"></th><th class="c" style="width:44px">Qtd</th><th>Produto</th><th style="width:110px">Embalagem</th><th class="r" style="width:80px">Unit.</th><th class="r" style="width:90px">Total</th></tr></thead>
-    <tbody>${p.itens.map(i=>`<tr><td class="c"><span class="chk"></span></td><td class="c"><b>${i.q}</b></td><td class="item"><b>${i.nome}</b>${i.promo?'<small>🔥 promoção</small>':''}</td><td>${i.emb||'—'}</td><td class="r">${fmt(i.unit)}</td><td class="r"><b>${fmt(i.tot)}</b></td></tr>`).join('')}</tbody>
-  </table>
-  <div class="tot">
-    <div><span>Itens (${p.itens.reduce((a,i)=>a+i.q,0)} un · ${p.itens.length} produtos)</span><span>${fmt(sub)}</span></div>
-    ${desc>0?`<div><span>🏷️ Desconto atacado (${p.descPct}%)</span><span class="desc">− ${fmt(desc)}</span></div>`:''}
-    <div><span>Frete</span><span class="${frete===0?'desc':''}">${frete===0?'GRÁTIS':fmt(frete)}</span></div>
-    <div><span>TOTAL</span><span>${fmt(total)}</span></div>
+  <div class="cab" style="border:none;padding:0;display:none">
   </div>
-  <div class="blocos" style="margin-top:10px">
-    <div class="bloco"><h3>Pagamento</h3><p><b>${p.pag||'—'}</b>${p.troco?`<br>Troco para: ${p.troco}`:''}</p></div>
-    <div class="bloco"><h3>Conferência</h3><p>Separado por: ______________<br>Conferido por: <b>${vend||'______________'}</b><br>Data: ____/____/______</p></div>
-  </div>
-  ${p.comodato?`<div class="comod"><h3>🎁 Comodato${p.comodato.faixa?` — Faixa ${p.comodato.faixa}`:''}</h3><p>${p.comodato.recusou?'Cliente <b>recusou</b> o comodato.':p.comodato.nenhum?'Nenhum item de comodato selecionado.':p.comodato.itens.map(i=>'☐ '+i).join('<br>')}${(p.comodato.extras||[]).length?'<br>'+p.comodato.extras.join('<br>'):''}${p.volt?`<br>⚡ Voltagem da instalação: <b>${p.volt}</b>`:''}</p></div>`:''}
-  ${p.obs?`<div class="obs"><b>Obs. do cliente:</b> ${p.obs}</div>`:''}
-  ${p.avisos.length?`<div class="obs" style="border-color:var(--verm);background:#fff3f3"><b>Atenção na conferência:</b><br>${p.avisos.join('<br>')}</div>`:''}
-  <div class="assin"><div>Separação</div><div>Conferência</div><div>Recebido pelo cliente</div></div>
-  <div class="rod"><span>${EMPRESA.nome} · pedido ${p.num||''}</span><span>Documento de conferência interna — não é documento fiscal</span></div>`;
-}
 
+  <div class="sec">Destinatário / Cliente</div>
+  <div class="grid" style="grid-template-columns:3fr 1.6fr 1.1fr">
+    ${cx('Nome / Razão social',(nf.tipo==='CNPJ'&&nf.nome)?nf.nome:(p.titular||''))}${cx((nf.tipo||'CNPJ/CPF'),nf.doc||'')}${cx('Data do pedido',dataEm||'','fim')}
+    ${cx('Endereço',logr)}${cx('Município',cidade)}${cx('UF',uf,'fim')}
+    ${cx('CEP',p.end.cep||'')}${cx('Telefone / WhatsApp',p.zap||'')}${cx('ID de cadastro',p.id||'','fim')}
+    ${cx('Titular do pedido',p.titular||'')}${cx('Inscrição estadual',nf.tipo==='CNPJ'?(nf.ie||''):'—')}${cx('Hora do pedido',horaEm||'','fim')}
+  </div>
+
+  <div class="sec">Local de entrega</div>
+  <div class="grid" style="grid-template-columns:2fr 1.2fr 1.2fr">
+    ${cx('Endereço de entrega',[logr,cidUF].filter(Boolean).join(' — '))}${cx('Data / período',p.entrega||'A COMBINAR')}${cx('Recebedor',p.recebedor||'','fim')}
+    ${cx('Ponto de referência',p.ref||'')}${cx('CEP',p.end.cep||'')}${cx('Complemento',endL.length>2?endL[2]:'','fim')}
+  </div>
+
+  <div class="sec">Pagamento / Totais</div>
+  <div class="grid" style="grid-template-columns:1.2fr 1fr 1fr 1fr 1fr 1.2fr">
+    ${cx('Forma de pagamento',p.pag||'')}${cx('Troco para',p.troco||'—')}${cx('Produtos',fmt(sub))}${cx('Desconto'+(p.descPct?' ('+p.descPct+'%)':''),desc?'−'+fmt(desc):'0,00')}${cx('Frete',frete===0?'GRÁTIS':fmt(frete))}${cx('Valor total do pedido',fmt(total),'fim')}
+  </div>
+
+  <div class="sec">Transportador / Volumes</div>
+  <div class="grid" style="grid-template-columns:2fr 1.5fr .8fr 1fr 1fr 1fr">
+    ${cx('Motorista','')}${cx('Placa do veículo','')}${cx('Frete por conta','Emitente')}${cx('Quantidade (un)',String(nUn))}${cx('Produtos',String(p.itens.length))}${cx('Data da saída','','fim')}
+  </div>
+
+  <div class="sec">Dados dos produtos</div>
+  <table class="prod">
+    <thead><tr><th style="width:7mm">Conf.</th><th style="width:10mm">Item</th><th>Descrição do produto</th><th style="width:30mm">Embalagem</th><th style="width:12mm" class="c">Qtd</th><th style="width:22mm" class="r">Vlr. unit.</th><th style="width:24mm" class="r">Vlr. total</th></tr></thead>
+    <tbody>${p.itens.map((i,n)=>`<tr><td class="c"><span class="ck"></span></td><td class="c">${String(n+1).padStart(3,'0')}</td><td>${esc(i.nome)}${i.promo?' *PROMO*':''}</td><td>${esc(i.emb||'un')}</td><td class="c">${i.q}</td><td class="r">${fmt(i.unit).replace('R$ ','')}</td><td class="r">${fmt(i.tot).replace('R$ ','')}</td></tr>`).join('')}
+    ${Array.from({length:Math.max(0,8-p.itens.length)}).map(()=>'<tr><td>&nbsp;</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>').join('')}</tbody>
+  </table>
+
+  ${p.comodato?`<div class="sec">Comodato${p.comodato.faixa?' — faixa '+esc(p.comodato.faixa):''}</div><div class="bloco" style="min-height:8mm">${p.comodato.recusou?'CLIENTE RECUSOU O COMODATO':p.comodato.nenhum?'NENHUM ITEM DE COMODATO SELECIONADO':p.comodato.itens.map(i=>'[ ] '+esc(i)).join('\n')}${p.volt?'\nVOLTAGEM DA INSTALAÇÃO: '+esc(p.volt):''}</div>`:''}
+
+  <div class="sec">Dados adicionais</div>
+  <div class="dados">
+    <div class="bloco"><b>INFORMAÇÕES COMPLEMENTARES</b>\n${p.obs?'OBS. DO CLIENTE: '+esc(p.obs)+'\n':''}${p.nf?'NOTA FISCAL: '+esc(nf.tipo||'')+' '+esc(nf.doc||'')+(nf.nome?' — '+esc(nf.nome):'')+(nf.tipo==='CNPJ'?' — IE '+esc(nf.ie||''):'')+'\n':'NOTA FISCAL: DADOS NÃO INFORMADOS — CONFIRMAR COM O CLIENTE\n'}${p.entrega?'ENTREGA: '+esc(p.entrega)+'\n':''}SEPARADO POR: ______________   CONFERIDO POR: ${esc(vend)||'______________'}   DATA: ____/____/______${p.avisos.length?'\n\n*** ATENÇÃO NA CONFERÊNCIA ***\n'+p.avisos.map(a=>'- '+esc(a)).join('\n'):''}</div>
+    <div class="bloco"><b>RESERVADO À EXPEDIÇÃO</b>\n\n</div>
+  </div>
+  <div class="assin"><div>Separação</div><div>Conferência</div><div>Motorista</div></div>
+  <div class="rodape"><span>${esc(EMPRESA.nome)} · pedido ${esc(p.num||'')} · gerado ${new Date().toLocaleString('pt-BR')}</span><span>Espelho de pedido para conferência interna — não é nota fiscal e não substitui documento fiscal</span></div>`;
+}
 function baixarPDF(){
   if(!pedidoAtual) return;
   const el=document.getElementById('folha');
@@ -422,7 +438,7 @@ function baixarPDF(){
   const w=document.querySelector('.folha-wrap'); const z=w.style.zoom; w.style.zoom='1';
   html2pdf().set({margin:0,filename:nome,image:{type:'jpeg',quality:.98},html2canvas:{scale:2,useCORS:true},jsPDF:{unit:'mm',format:'a4',orientation:'portrait'}}).from(el).save().then(()=>{w.style.zoom=z;}).catch(()=>{w.style.zoom=z;window.print();});
 }
-function limpar(){document.getElementById('txt').value='';document.getElementById('vend').value='';document.getElementById('cdd').value='';['nf-tipo','nf-doc','nf-nome','nf-ie','nf-email'].forEach(id=>document.getElementById(id).value='');pedidoAtual=null;const f=document.getElementById('folha');f.className='folha vazia';f.innerHTML='Cole um pedido ao lado e clique em <b>&nbsp;Gerar folha</b>';document.getElementById('erro').style.display='none';document.getElementById('avisos').style.display='none';document.getElementById('btn-pdf').disabled=true;document.getElementById('btn-print').disabled=true;}
+function limpar(){document.getElementById('txt').value='';pedidoAtual=null;const f=document.getElementById('folha');f.className='folha vazia';f.innerHTML='Cole um pedido ao lado e clique em <b>&nbsp;Gerar folha</b>';document.getElementById('erro').style.display='none';document.getElementById('avisos').style.display='none';document.getElementById('btn-pdf').disabled=true;document.getElementById('btn-print').disabled=true;}
 
 /* últimos pedidos (neste navegador) */
 function guardar(p,t){try{const arr=JSON.parse(localStorage.getItem('conf_pedidos')||'[]').filter(x=>x.num!==p.num);arr.unshift({num:p.num,titular:p.titular,total:p.total,data:p.data,entrega:p.entrega,txt:t,em:Date.now()});localStorage.setItem('conf_pedidos',JSON.stringify(arr.slice(0,100)));}catch(e){}}
@@ -433,21 +449,7 @@ function verUltimos(){
   box.innerHTML='<div style="margin-top:8px;display:flex;flex-direction:column;gap:6px">'+arr.map((x,i)=>`<button class="b3" style="text-align:left;padding:8px 10px;font-weight:600;font-size:.8rem" onclick="abrirUltimo(${i})"><b>#${x.num||'—'}</b> · ${x.titular||''} · ${x.total!=null?fmt(x.total):''}<br><span style="color:var(--cinza)">${x.data||''}${x.entrega?' · 📅 '+x.entrega:''}</span></button>`).join('')+'</div>';
 }
 function abrirUltimo(i){try{const arr=JSON.parse(localStorage.getItem('conf_pedidos')||'[]');if(arr[i]){document.getElementById('txt').value=arr[i].txt;gerar();document.getElementById('ultimos').innerHTML='';}}catch(e){}}
-document.getElementById('vend').addEventListener('input',()=>{
-  if(pedidoAtual){
-    if(modoAtual==='espelho') renderFolha(pedidoAtual);
-    else renderNotaFiscal(pedidoAtual);
-  }
-});
-['nf-tipo','nf-doc','nf-nome','nf-ie','nf-email','cdd'].forEach(id=>{
-  const el=document.getElementById(id);
-  if(el) el.addEventListener('input',()=>{
-    if(pedidoAtual){
-      if(modoAtual==='espelho') renderFolha(pedidoAtual);
-      else renderNotaFiscal(pedidoAtual);
-    }
-  });
-});
+document.getElementById('vend').addEventListener('input',()=>{if(pedidoAtual)renderFolha(pedidoAtual);});
 </script>
 </body>
 </html>
